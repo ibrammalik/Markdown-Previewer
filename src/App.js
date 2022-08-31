@@ -17,8 +17,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <textarea id="editor" onChange={editorChangeHandler} value={editorValue}></textarea>
-        <div id="previewer" style={{ color: "white" }}></div>
+        <div className="container">
+          <div id="editor-container">
+            <div id="editor-head">Editor</div>
+            <textarea id="editor" onChange={editorChangeHandler} value={editorValue}></textarea>
+          </div>
+          <div id="previewer-container">
+            <div id="previewer-head">previewer</div>
+            <div id="previewer"></div>
+          </div>
+        </div>
       </header>
     </div>
   );
