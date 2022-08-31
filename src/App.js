@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import { marked } from "marked";
 
 function App() {
+  const [editorValue, setEditorValue] = useState("Halo");
+
+  const editorChangeHandler = (event) => {
+    setEditorValue(event.target.value);
+  };
+
+  useEffect(() => {
+    const previewer = document.getElementById("previewer");
+    previewer.innerHTML = marked.parse(editorValue);
+  }, [editorValue]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <textarea id="editor" onChange={editorChangeHandler} value={editorValue}></textarea>
+        <div id="previewer" style={{ color: "white" }}></div>
       </header>
     </div>
   );
