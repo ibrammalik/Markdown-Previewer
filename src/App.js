@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import "./App.css";
 import { marked } from "marked";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,11 +19,13 @@ function App() {
   }, [editorValue]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="container">
+    <div>
+      <header>
+        <div>
           <div id="editor-container">
-            <div id="editor-head">Editor</div>
+            <div id="editor-head" className="text-3xl font-bold underline">
+              Editor
+            </div>
             <textarea id="editor" onChange={editorChangeHandler} value={editorValue}></textarea>
           </div>
           <div id="previewer-container">
