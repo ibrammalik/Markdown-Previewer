@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { marked } from "marked";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const [editorValue, setEditorValue] = useState("Halo");
+  const editorValue = useSelector((state) => state.editorValue);
+  const setEditorValue = useDispatch();
 
   const editorChangeHandler = (event) => {
-    setEditorValue(event.target.value);
+    setEditorValue({
+      type: "CHANGE",
+      payload: event.target.value,
+    });
   };
 
   useEffect(() => {
