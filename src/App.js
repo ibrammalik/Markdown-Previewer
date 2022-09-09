@@ -1,39 +1,15 @@
-import { useEffect } from "react";
-import { marked } from "marked";
-import { useDispatch, useSelector } from "react-redux";
+import Container from "./component/Container";
+import Footer from "./component/Footer";
+import Navbar from "./component/Navbar";
 
 function App() {
-  const editorValue = useSelector((state) => state.editorValue);
-  const setEditorValue = useDispatch();
-
-  const editorChangeHandler = (event) => {
-    setEditorValue({
-      type: "CHANGE",
-      payload: event.target.value,
-    });
-  };
-
-  useEffect(() => {
-    const previewer = document.getElementById("previewer");
-    previewer.innerHTML = marked.parse(editorValue);
-  }, [editorValue]);
-
   return (
     <div>
-      <header>
-        <div>
-          <div id="editor-container">
-            <div id="editor-head" className="text-3xl font-bold underline">
-              Editor
-            </div>
-            <textarea id="editor" onChange={editorChangeHandler} value={editorValue}></textarea>
-          </div>
-          <div id="previewer-container">
-            <div id="previewer-head">previewer</div>
-            <div id="previewer"></div>
-          </div>
-        </div>
-      </header>
+      <Navbar />
+
+      <Container />
+
+      <Footer />
     </div>
   );
 }
