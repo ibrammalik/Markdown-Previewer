@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function Footer() {
   return (
     <footer id="footer" className="flex flex-col bg-slate-900 text-white justify-center py-5">
-      <div id="footer-content" className="flex justify-center flex-col items-center gap-y-4 gap-x-16 sm:flex-row ">
+      <div id="footer-content" className="flex justify-center flex-col items-center gap-y-4 gap-x-16 sm:flex-row flex-wrap">
         <div id="logo" className="flex flex-col justify-center items-center">
           <img id="website-logo" src={Logo} alt="Website Logo" width="100px" height="100px"></img>
           <p id="website-name" className="text-center font-bold text-lg text-[#2ECC71] ">

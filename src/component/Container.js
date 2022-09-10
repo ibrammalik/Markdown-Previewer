@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Editor from "./Editor";
 import Previewer from "./Previewer";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,25 +20,37 @@ function Container() {
     });
   };
 
-  var x = window.matchMedia("(max-width: 768px)");
+  const x = window.matchMedia("(max-width: 1024px)");
+  const [isSmall, setIsSmall] = useState(x.matches);
+  const myFunction = () => {
+    if (x.matches) {
+      setIsSmall(true);
+    } else if (!x.matches) {
+      setIsSmall(false);
+    }
+  };
+  x.addEventListener("change", myFunction);
+
   useEffect(() => {
-    var x = window.matchMedia("(max-width: 768px)");
     const editor = document.querySelector("#editor-container");
     const previewer = document.querySelector("#previewer-container");
     const editorTab = document.querySelector("#editor-tab");
     const previewerTab = document.querySelector("#previewer-tab");
-    if (isShowEditor && !isShowPreviewer && x.matches) {
+    if (isShowEditor && !isShowPreviewer && isSmall) {
       editor.style.display = "block";
       previewer.style.display = "none";
       editorTab.style.color = "#2ECC71";
       previewerTab.style.color = "#CCCCCC";
-    } else if (!isShowEditor && isShowPreviewer && x.matches) {
+    } else if (!isShowEditor && isShowPreviewer && isSmall) {
       editor.style.display = "none";
       previewer.style.display = "block";
       editorTab.style.color = "#CCCCCC";
       previewerTab.style.color = "#2ECC71";
+    } else if (isSmall === false) {
+      previewer.style.display = "block";
+      editor.style.display = "block";
     }
-  }, [isShowEditor, isShowPreviewer, x.addListener]);
+  }, [isShowEditor, isShowPreviewer, isSmall]);
 
   return (
     <main id="main-container" className="h-[calc(100vh_-_46px)] ">
