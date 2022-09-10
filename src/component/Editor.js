@@ -13,11 +13,11 @@ function Editor() {
   };
 
   return (
-    <div id="editor-container" className="h-screen">
-      <div id="editor-head" className="text-1xl font-bold text-center py-2">
+    <div id="editor-container" className="h-screen lg:h-full  ">
+      <div id="editor-head" className="font-bold text-center py-2 border-b-2">
         EDITOR
       </div>
-      <textarea id="editor" onChange={editorChangeHandler} value={editorValue} className="h-full w-full"></textarea>
+      <textarea id="editor" onChange={editorChangeHandler} value={editorValue} className="max-h-[calc(100%_-_150px)] min-h-[calc(100%_-_150px)] lg:max-h-[calc(100%_-_40px)] lg:min-h-[calc(100%_-_40px)] w-full  p-5"></textarea>
     </div>
   );
 }
